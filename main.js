@@ -66,3 +66,27 @@ function slider(direction){
         }
     }
 }
+
+$( ".nav i" ).click(function() {
+    var images = $('.images img');
+
+    activeImage = $('.images .active');
+    activeImage.removeClass('active');
+    
+    var index = $( ".nav i" ).index( this );
+    console.log(`indice pallino: ${index}`);
+    // console.log(images[index]);
+    $(images[index]).addClass('active')
+    
+    // var image = images[index]
+    // console.log(image);
+    // $(image).addClass('active')
+    
+    //images è un object, index() sembra non funzionare
+    
+    // for (var i = 0; i < images.length; i++){
+    //     console.log(images[i]);
+    // }
+
+
+});
