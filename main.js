@@ -68,16 +68,23 @@ function slider(direction){
 }
 
 $( ".nav i" ).click(function() {
-    var images = $('.images img');
+    //refs
+    var activeImages = $('.images img');
+    activeDot = $('.nav i')
 
-    activeImage = $('.images .active');
-    activeImage.removeClass('active');
+    // rimuovo la classe active prima di applicarla al nuovo elemento cliccato
+    activeImages.removeClass('active');
+    activeDot.removeClass('active');
     
+    // estrapolo l'indice (dal pallino) da applicare successivamente all immagine
     var index = $( ".nav i" ).index( this );
-    console.log(`indice pallino: ${index}`);
-    // console.log(images[index]);
-    $(images[index]).addClass('active')
+
+    // seleziono tramite l'indice del pallino l'immagine corrispondente ed applico la classe active
+    $(activeImages[index]).addClass('active');
+    $(activeDot[index]).addClass('active');
     
+
+    /************* test prima di funzionare *******/
     // var image = images[index]
     // console.log(image);
     // $(image).addClass('active')
