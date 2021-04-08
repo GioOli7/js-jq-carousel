@@ -2,7 +2,10 @@ $(document).ready( function() {
     // ref
     var prev = $('.slider-wrapper .prev');
     var next = $('.slider-wrapper .next');
+    var leftArrow = 37;     //keyCode leftArrow
+    var rightArrow = 39;    //keyCode rightArrow
 
+    // click alle freccette dello slider
     prev.click( function() {
         slider('prev');
     })
@@ -11,22 +14,33 @@ $(document).ready( function() {
         slider('next');
     })
 
+    //click alle frecce della keyboard
+    $( document ).keydown( function(e){
+        if(e.keyCode == leftArrow){
+            slider('prev');
+        } else if(e.keyCode == rightArrow){
+            slider('next');
+        }
+    })
 
-})
+
+
+})  //end document ready
 
 /****************************************************************
  *  FUNCTIONS
  ****************************************************************/
 
 function slider(direction){
-    // inserisco in una variabile l'immagine che è active
+    // inserisco in una variabile il riferimento alla img active
     activeImage = $('.images .active')
+    // e il pallino dello slider
     activeDot = $('.nav .active')
 
     // a prescindere dalla direzione, elimino la classe active alla img attuale
     // in modo che, applicandola alla img successiva, non rimanga active anche l'attuale
-    activeImage.removeClass('active');
-    activeDot.removeClass('active');
+    activeImage.removeClass('active');      //immagine
+    activeDot.removeClass('active');        //pallino
 
     // in base alla direzione, quindi alla freccia che ho premuto (prev o next),
     //sposto la classe active alla img precedente o successiva.
@@ -35,11 +49,11 @@ function slider(direction){
         // verifico innanzitutto se abbiamo raggiunto la fine dello Slider
         // in quel caso applico la classe active alla prima img dello slider
         if (activeImage.hasClass('last')){
-            $('.images img.first').addClass('active'); //seleziono il primo elemento e gli applico la classe active
-            $('.nav i.first').addClass('active');
+            $('.images img.first').addClass('active');  //seleziono il primo elemento e gli applico la classe active
+            $('.nav i.first').addClass('active');       //uguale per il pallino
         } else { //altrimenti sposto la classe active all elemento successivo
-            activeImage.next('img').addClass('active');
-            activeDot.next('i').addClass('active');
+            activeImage.next('img').addClass('active');     //immagine
+            activeDot.next('i').addClass('active');         //pallino
         }
     // in modo analogo faccio con il prev
     } else if (direction == 'prev') {
